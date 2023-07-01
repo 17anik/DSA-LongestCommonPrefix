@@ -1,50 +1,44 @@
-// C++ program to find longest common prefix
-// of given array of words.
-#include<iostream>
-#include<algorithm>
+// C# program to find longest common prefix of
+// given array of words.
+using System;
+		
+public class GFG {
+	
+	static string longestCommonPrefix(String[] a)
+	{
+        int len = a.Length;
 
-using namespace std;
+        if(len==0){
+            return "";
+        }
+        
+        if(len==1){
+            return a[0];
+        }
+        
+        Array.Sort(a);
+        
+       
+        
+        int minlen = Math.Min(a[0].Length, a[len-1].Length);
+        
+        int i = 0;
+        while(i < minlen && a[0][i]==a[len-1][i]){
+            i++;
+        }
+        
+        return a[0].Substring(0,i);
+	}
 
-// Function to find the longest common prefix
-string longestCommonPrefix(string ar[], int n)
-{
-
-	// If size is 0, return empty string
-	if (n == 0)
-		return "";
-
-//If size is 1 then just return that character
-	if (n == 1)
-		return ar[0];
-
-	// Sort the given array
-	sort(ar, ar + n);
-
-	// Find the minimum length from
-	// first and last string
-	int en = min(ar[0].size(),
-				ar[n - 1].size());
-
-	// Now the common prefix in first and
-	// last string is the longest common prefix
-	string first = ar[0], last = ar[n - 1];
-	int i = 0;
-	while (i < en && first[i] == last[i])
-		i++;
-
-	string pre = first.substr(0, i);
-	return pre;
+	/* Driver Function to test other function */
+	public static void Main()
+	{
+		
+		string[] input = {"geeksforgeeks", "geeks",
+								"geek", "geezer"};
+								
+		Console.WriteLine( "The longest Common"
+							+ " Prefix is : "
+				+ longestCommonPrefix(input));
+	}
 }
-
-// Driver Code
-int main()
-{
-	string ar[] = {"geeksforgeeks", "geeks",
-						"geek", "geezer"};
-	int n = sizeof(ar) / sizeof(ar[0]);
-	cout << "The longest common prefix is: "
-		<< longestCommonPrefix(ar, n);
-	return 0;
-}
-
-// This code is contributed by jrolofmeister
